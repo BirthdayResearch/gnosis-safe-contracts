@@ -9,7 +9,6 @@
   "files": [
     "contracts",
     "dist",
-    "src",
     "test",
     "build"
   ],
@@ -17,9 +16,6 @@
     "build": "hardhat compile",
     "build:ts": "yarn rimraf dist && tsc",
     "test": "hardhat test",
-    "deploy-custom": "rm -rf deployments/custom && yarn deploy-all custom",
-    "deploy-all": "hardhat deploy-contracts --network",
-    "deploy": "hardhat deploy --network",
     "lint": "yarn lint:sol && yarn lint:ts",
     "lint:sol": "solhint 'contracts/**/*.sol'",
     "lint:ts": "eslint --max-warnings 0 .",
