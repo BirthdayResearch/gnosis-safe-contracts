@@ -2,7 +2,6 @@ import type { HardhatUserConfig, HttpNetworkUserConfig } from "hardhat/types";
 import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
 import "solidity-coverage";
-import "hardhat-deploy";
 import dotenv from "dotenv";
 import yargs from "yargs";
 import { getSingletonFactoryInfo } from "@gnosis.pm/safe-singleton-factory";
@@ -37,31 +36,13 @@ if (["mainnet", "rinkeby", "kovan", "goerli", "ropsten", "mumbai", "polygon"].in
   );
 }
 
-import "./src/tasks/local_verify"
-import "./src/tasks/deploy_contracts"
-import "./src/tasks/show_codesize"
-import { BigNumber } from "@ethersproject/bignumber";
-
 const primarySolidityVersion = SOLIDITY_VERSION || "0.7.6"
 const soliditySettings = !!SOLIDITY_SETTINGS ? JSON.parse(SOLIDITY_SETTINGS) : undefined
-
-const deterministicDeployment = CUSTOM_DETERMINISTIC_DEPLOYMENT == "true" ?
-  (network: string) => {
-    const info = getSingletonFactoryInfo(parseInt(network))
-    if (!info) return undefined
-    return {
-      factory: info.address,
-      deployer: info.signerAddress,
-      funding: BigNumber.from(info.gasLimit).mul(BigNumber.from(info.gasPrice)).toString(),
-      signedTx: info.transaction
-    }
-  } : undefined
 
 const userConfig: HardhatUserConfig = {
   paths: {
     artifacts: "build/artifacts",
     cache: "build/cache",
-    deploy: "src/deploy",
     sources: "contracts",
   },
   solidity: {
@@ -133,10 +114,6 @@ const userConfig: HardhatUserConfig = {
       ...sharedNetworkConfig,
       url: `https://api.avax.network/ext/bc/C/rpc`,
     },
-  },
-  deterministicDeployment,
-  namedAccounts: {
-    deployer: 0,
   },
   mocha: {
     timeout: 2000000,
