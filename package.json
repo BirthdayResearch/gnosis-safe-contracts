@@ -1,9 +1,11 @@
 {
-  "name": "@gnosis.pm/safe-contracts",
-  "version": "1.3.0",
-  "description": "Ethereum multisig contract",
-  "homepage": "https://github.com/gnosis/safe-contracts/",
+  "name": "@birthdayresearchforks/gnosis-safe-contracts",
+  "version": "0.0.0",
+  "description": "Fork of Ethereum Gnosis multisig contract",
   "license": "GPL-3.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -28,19 +30,6 @@
     "prepare": "husky install",
     "prepublish": "yarn rimraf build && yarn build && yarn build:ts",
     "format-repo": "npx ts-node format-repo.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gnosis/gnosis-safe.git"
-  },
-  "keywords": [
-    "Ethereum",
-    "Wallet",
-    "Safe"
-  ],
-  "author": "stefan@gnosis.pm",
-  "bugs": {
-    "url": "https://github.com/gnosis/gnosis-safe/issues"
   },
   "devDependencies": {
     "@gnosis.pm/safe-singleton-factory": "^1.0.3",
