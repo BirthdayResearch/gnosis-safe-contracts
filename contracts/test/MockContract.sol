@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 // Copied from https://github.com/gnosis/mock-contract/commit/b3db814ac41a3b632d8441cd1fbfbfce54e056f7
+/* solhint-disable */
 
 pragma solidity =0.7.6;
 
