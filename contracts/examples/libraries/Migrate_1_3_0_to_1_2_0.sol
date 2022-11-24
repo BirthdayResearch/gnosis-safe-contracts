@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: LGPL-3.0-only
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity =0.7.6;
 import "../../libraries/GnosisSafeStorage.sol";
 
 /// @title Migration - migrates a Safe contract from 1.3.0 to 1.2.0

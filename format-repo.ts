@@ -6,7 +6,7 @@ const OPEN_ZEP_PACKAGE = '@openzeppelin3.4.2'
 // Where to start walking from
 const START_PATH = resolve('./')
 // Directories to ignore. This is a naive search, similar to a **directory** glob
-const TO_IGNORE = ['.github', '.husky', '.vscode', 'node_modules', 'typechain', 'artifacts', 'git', '.idea', 'dist', 'docs', 'src', 'test', 'types']
+const TO_IGNORE = ['.github', '.husky', '.vscode', 'node_modules', 'typechain', 'artifacts', 'git', '.idea', 'dist', 'docs', 'src', 'types']
 
 walk(START_PATH, formatFile)
 
@@ -70,36 +70,6 @@ function handleSolidityFile(filePath: string) {
       }
       return
     }
-  }
-}
-
-function handleTSFile(filePath: string) {
-  const fileContents = readFileSync(filePath, {encoding: 'utf-8'})
-  const fileLines = fileContents.split('\n')
-  const fileLinesCopy = [...fileLines]
-  let changeMade = false
-
-  for (let i = 0; i < fileLines.length; i++) {
-    const line = fileLines[i]
-
-    // Shorter imports start with the word import
-    // Longer imports are formatted, and the line which includes the package looks like
-    // } from '@some-package-name'
-    if (line.startsWith('import') || line.startsWith('}')) {
-      // Do not overwrite if the right openzeppelin package is already used
-      if (line.includes('@openzeppelin') && !line.includes(OPEN_ZEP_PACKAGE)) {
-        fileLinesCopy[i] = line.replace('@openzeppelin', OPEN_ZEP_PACKAGE)
-        changeMade = true
-      }
-    }
-
-    // not able to have early return since we have no way of knowing when the imports
-    // end and the code starts
-  }
-
-  if (changeMade) {
-    const newFile = fileLinesCopy.join('\n')
-    writeFileSync(filePath, newFile, 'utf-8')
   }
 }
 

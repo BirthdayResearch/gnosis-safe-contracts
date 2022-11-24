@@ -43,7 +43,6 @@
     "url": "https://github.com/gnosis/gnosis-safe/issues"
   },
   "devDependencies": {
-    "@gnosis.pm/mock-contract": "^4.0.0",
     "@gnosis.pm/safe-singleton-factory": "^1.0.3",
     "@nomiclabs/hardhat-ethers": "^2.0.0",
     "@nomiclabs/hardhat-etherscan": "^2.1.0",
